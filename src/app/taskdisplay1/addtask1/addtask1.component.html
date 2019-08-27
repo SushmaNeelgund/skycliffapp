@@ -1,0 +1,32 @@
+<div class="container">
+
+  <h1>Sign Up Form</h1>
+  <form [formGroup]="addtask1" (ngSubmit)="onUserSave()">
+    <div class="form-group">
+      <label>Id</label>
+      <input formControlName="Id" type="text" class="form-control" placeholder="Enter Id">
+      <label class="alert alert-danger" *ngIf="addtask1.get('Id').hasError('required') && !signup.get('Id').pristine" >Id is required.</label>
+      <label class="alert alert-danger"  *ngIf="addtask1.get('Id').hasError('email')">Id is invalid.</label>
+
+      <label style="color:blue" *ngIf="addtask1.get('Id').status=='PENDING'">Checking...</label>
+      <label style="color:green" *ngIf="addtask1.get('Id').status=='VALID'">Id is Available</label>
+      <label style="color:red" *ngIf="addtask1.get('Id').hasError('IdInUse')">Id is already Taken</label>
+
+    </div>
+    <div class="form-group">
+      <label>Title</label>
+      <input formControlName="Title" type="text" class="form-control" placeholder="Enter Title ">
+      <label class="alert alert-danger"  *ngIf="addtask1.get('Title').hasError('required') && !signup.get('Title').pristine " >Title</label>
+    </div>
+
+      <div  class="form-group">
+        <label>Status</label>
+        <input formControlName="Status" class="form-control" placeholder="Enter Status ">
+        <label class="alert alert-danger" *ngIf="addtask1.get('Status').get('Status').hasError('required') && !signup.get('Status').get('user_password').pristine " >Status</label>
+      </div>
+
+    <div class="form-group">
+      <button type="submit" class="form-control btn btn-primary">Save User</button>
+    </div>
+
+
